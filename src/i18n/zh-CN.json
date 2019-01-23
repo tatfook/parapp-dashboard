@@ -61,6 +61,50 @@
         "updatedAt": "更新日期"
       },
       "management": "用户管理"
+    },
+    "Device": {
+      "attr": {
+        "id": "序号",
+        "deviceId": "设备号",
+        "price": "设备价格",
+        "password": "设备密码",
+        "username": "购买者名称",
+        "cellphone": "购买者电话",
+        "purchaseTime": "购买时间",
+        "gameCoin": "游戏币数量",
+        "description": "备注"
+      }
+    },
+    "ActivationCode": {
+      "attr": {
+        "id": "序号",
+        "key": "激活码",
+        "price": "激活码售价",
+        "gameCoin": "游戏币数量",
+        "createdAt": "创建时间",
+        "description": "备注"
+      }
+    },
+    "PurchaseRecord": {
+      "attr": {
+        "id": "序号",
+        "key": "激活码",
+        "purchase": "价格",
+        "gameCoin": "游戏币数量",
+        "purchaseName": "购买者名称",
+        "identity": "购买者身份",
+        "purchaseCellphone": "购买者电话",
+        "purchaseTime": "购买时间"
+      }
+    },
+    "ConsumptionRecord": {
+      "attr": {
+        "id": "序号",
+        "key": "激活码",
+        "gameCoin": "游戏币数量",
+        "deviceId": "设备ID",
+        "activeTime": "激活时间"
+      }
     }
   }
 }

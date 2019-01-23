@@ -62,6 +62,7 @@ export default {
       this.$refs.loginForm.validate(valid => {
         if (valid) {
           this.loading = true
+          this.$router.push({ path: '/' })
           this.$store
             .dispatch('Login', this.loginForm)
             .then(() => {
@@ -72,7 +73,6 @@ export default {
               this.loading = false
             })
         } else {
-          console.log('error submit!!')
           return false
         }
       })

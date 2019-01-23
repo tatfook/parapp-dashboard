@@ -4,12 +4,12 @@ import createService from '@/utils/request'
 const request = createService()
 
 export function resourceCRUD(resource) {
-  const url = '/api/admin/' + resource
+  const url = '/admins/' + resource
   return {
     list(data) {
       return request({
         method: 'post',
-        url: url + '/search',
+        url: url + '/query',
         data
       })
     },
