@@ -53,4 +53,11 @@ export default class PurchaseRecord extends BaseResource {
       disabled: ['destroy', 'delete']
     }
   }
+
+  static queryFilter(query) {
+    // will include all by default, to make sure every associate works
+    query.include({ all: true, nested: false })
+    query.where({ 'purchase-eq': 1 })
+    return query
+  }
 }

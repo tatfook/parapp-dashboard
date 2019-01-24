@@ -41,4 +41,11 @@ export default class ConsumptionRecord extends BaseResource {
       disabled: ['destroy', 'create', 'delete', 'edit']
     }
   }
+
+  static queryFilter(query) {
+    // will include all by default, to make sure every associate works
+    query.include({ all: true, nested: false })
+    query.where({ 'active-eq': 1 })
+    return query
+  }
 }
