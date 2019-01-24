@@ -45,7 +45,7 @@ export default class ActivationCode extends BaseResource {
 
   static actions() {
     return {
-      disabled: ['destroy', 'delete']
+      disabled: ['destroy', 'delete', 'create']
     }
   }
 
