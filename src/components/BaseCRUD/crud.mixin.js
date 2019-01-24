@@ -17,6 +17,7 @@ import CRUDForm from './form'
 import CRUDShow from './show'
 import CRUDPaginate from './paginate'
 import CRUDFilter from './filter'
+import CRUDInput from './input'
 
 const DEFAULT_ACTIONS = ['create', 'show', 'edit', 'delete', 'export']
 const FORMAT = {
@@ -41,7 +42,11 @@ export default {
       listFilter: {},
       dialogFormVisible: false,
       showingFormVisible: false,
+      dialogInputVisible: false,
+      inputData: [],
       dialogStatus: '',
+      dialogInputStatus: '',
+      dialogTitle: '',
       textMap: {
         update: 'edit',
         create: 'create'
@@ -297,6 +302,59 @@ export default {
     handleSearch(q) {
       this.listFilter = q
       this.getList()
+    },
+    showDialog(params) {
+      // type = input || checkbox
+      const { type = 'Input', title = '', status = '', data } = params
+      this[`dialog${_.upperFirst(type)}Visible`] = true
+      this[`dialog${_.upperFirst(type)}Status`] = status
+      this.dialogTitle = title
+      this[`${type}Data`] = data
+    },
+    async handleAppendButtonAction(button) {
+      const { func, refresh = true, checkSelected = true } = button
+      if (checkSelected && this.selected.length === 0) {
+        this.$message({
+          type: 'error',
+          message: this.$t('base.failed.empty')
+        })
+        return
+      }
+      if (!func) throw new Error('Missing Function')
+      try {
+        await func(this.selected, this)
+        if (refresh) {
+          this.$notify({
+            title: this.$t('success'),
+            type: 'success',
+            duration: 2000
+          })
+          this.getList()
+        }
+      } catch (error) {
+        console.error(error)
+        this.$message({
+          type: 'error',
+          message: this.$t('fail')
+        })
+      }
+    },
+    async handleInputCallback(input) {
+      try {
+        const callback = this.appendButtonCallback[this.dialogInputStatus]
+        if (callback) {
+          await callback(input, this)
+        }
+        this.dialogInputVisible = false
+        this.getList()
+      } catch (error) {
+        this.dialogInputVisible = false
+        console.error(error)
+        this.$message({
+          type: 'error',
+          message: this.$t('fail')
+        })
+      }
     }
   },
   computed: {
@@ -326,6 +384,12 @@ export default {
     },
     searchableFilters() {
       return this.resourceClass.searchAttrs().map(attr => attr.alias || attr.name)
+    },
+    appendButtons() {
+      return this.resourceClass.buttons ? this.resourceClass.buttons().append : []
+    },
+    appendButtonCallback() {
+      return this.resourceClass.buttons ? this.resourceClass.buttons().callback : {}
     }
   },
   components: {
@@ -333,6 +397,7 @@ export default {
     'crud-form': CRUDForm,
     'crud-show': CRUDShow,
     'crud-paginate': CRUDPaginate,
-    'crud-filter': CRUDFilter
+    'crud-filter': CRUDFilter,
+    'crud-input': CRUDInput
   }
 }
