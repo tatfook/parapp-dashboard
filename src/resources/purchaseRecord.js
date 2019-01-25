@@ -16,26 +16,32 @@ export default class PurchaseRecord extends BaseResource {
     }, {
       name: 'key',
       type: 'Number',
+      required: true,
       edit: true
     }, {
       name: 'purchase',
       type: 'Number',
+      required: true,
       edit: true
     }, {
       name: 'gameCoin',
       type: 'Number',
+      required: true,
       edit: true
     }, {
       name: 'purchaseName',
       type: 'String',
+      required: true,
       edit: true
     }, {
       name: 'identity',
       type: 'String',
+      required: true,
       edit: true
     }, {
       name: 'purchaseCellphone',
       type: 'Number',
+      required: true,
       edit: true
     }, {
       name: 'purchaseTime',
