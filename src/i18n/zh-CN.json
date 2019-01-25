@@ -65,7 +65,7 @@
     "Device": {
       "attr": {
         "id": "序号",
-        "deviceId": "设备号",
+        "deviceId": "设备ID",
         "price": "设备价格",
         "password": "设备密码",
         "username": "购买者名称",
