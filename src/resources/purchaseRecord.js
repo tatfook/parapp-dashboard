@@ -54,6 +54,7 @@ export default class PurchaseRecord extends BaseResource {
       type: 'Date',
       search: false,
       required: true,
+      component: 'time',
       edit: true
     }]
   }

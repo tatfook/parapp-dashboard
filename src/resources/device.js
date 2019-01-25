@@ -45,6 +45,7 @@ export default class Device extends BaseResource {
       name: 'purchaseTime',
       type: 'Date',
       search: false,
+      component: 'time',
       edit: true
     }, {
       name: 'gameCoin',
