@@ -4,5 +4,5 @@ const prodEnv = require('./prod.env')
 
 module.exports = merge(prodEnv, {
   NODE_ENV: '"development"',
-  BASE_API: '"http://127.0.0.1:7001"',
+  BASE_API: '"https://api-stage.keepwork.com/core/v0"',
 })

@@ -4,7 +4,7 @@ const request = createService()
 
 export function login(username, password) {
   return request({
-    url: '/api/user/login',
+    url: '/admins/login',
     method: 'post',
     data: {
       username,
@@ -13,9 +13,9 @@ export function login(username, password) {
   })
 }
 
-export function getInfo() {
-  return request({
-    url: '/api/user/current',
-    method: 'get'
-  })
-}
+// export function getInfo() {
+//   return request({
+//     url: '/api/user/current',
+//     method: 'get'
+//   })
+// }

@@ -24,13 +24,13 @@ import Layout from '../views/layout/Layout'
 export const constantRouterMap = [{
   path: '/login',
   component: () =>
-      import('@/views/login/index'),
+    import('@/views/login/index'),
   hidden: true
 },
 {
   path: '/404',
   component: () =>
-      import('@/views/404'),
+    import('@/views/404'),
   hidden: true
 },
 
@@ -43,7 +43,7 @@ export const constantRouterMap = [{
   children: [{
     path: 'dashboard',
     component: () =>
-        import('@/views/dashboard/index')
+      import('@/views/dashboard/index')
   }]
 }
 ]
@@ -58,14 +58,41 @@ export default new Router({
 export const asyncRouterMap = [{
   path: '/',
   component: Layout,
-  name: 'Admin',
+  name: 'explorationAPP',
+  meta: {
+    title: '探索APP',
+    icon: 'nested'
+  },
   children: [{
-    path: '/user',
-    component: () => import('@/views/user/index'),
-    name: 'User',
-    resource: 'User',
+    path: '/device',
+    component: () => import('@/views/operation/device/index'),
+    name: 'Device',
+    resource: 'Device',
     meta: {
-      title: 'User'
+      title: '设备'
+    }
+  }, {
+    path: '/activationCode',
+    component: () => import('@/views/operation/activationCode/index'),
+    name: 'ActivationCode',
+    resource: 'ActivationCode',
+    meta: {
+      title: '激活码'
+    }
+  }, {
+    path: '/purchaseRecord',
+    component: () => import('@/views/operation/purchaseRecord/index'),
+    name: 'PurchaseRecord',
+    resource: 'PurchaseRecord',
+    meta: {
+      title: '购买记录'
+    }
+  }, {
+    path: '/consumptionRecord',
+    component: () => import('@/views/operation/consumptionRecord/index'),
+    name: 'ConsumptionRecord',
+    meta: {
+      title: '消费记录'
     }
   }]
 }]
