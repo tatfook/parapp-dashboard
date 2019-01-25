@@ -78,6 +78,7 @@
     "ActivationCode": {
       "attr": {
         "id": "序号",
+        "active": "是否激活",
         "key": "激活码",
         "price": "激活码售价",
         "gameCoin": "含有游戏币数量",

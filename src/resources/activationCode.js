@@ -18,6 +18,10 @@ export default class ActivationCode extends BaseResource {
       type: 'Number',
       edit: false
     }, {
+      name: 'active',
+      type: 'Number',
+      edit: false
+    }, {
       name: 'key',
       type: 'Number',
       edit: false
@@ -45,7 +49,7 @@ export default class ActivationCode extends BaseResource {
 
   static actions() {
     return {
-      disabled: ['destroy', 'delete', 'create']
+      disabled: ['destroy', 'delete', 'create', 'edit']
     }
   }
 
