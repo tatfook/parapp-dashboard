@@ -89,8 +89,8 @@
       "attr": {
         "id": "序号",
         "key": "激活码",
-        "purchase": "价格",
-        "gameCoin": "游戏币数量",
+        "purchase": "激活码售价",
+        "gameCoin": "含有游戏币数量",
         "purchaseName": "购买者名称",
         "identity": "购买者身份",
         "purchaseCellphone": "购买者电话",

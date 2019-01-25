@@ -7,6 +7,13 @@ import _ from 'lodash'
 
 const crudAPI = _.merge({}, resourceCRUD('paracraftGameCoinKeys'), purchaseRecordApi)
 
+const identityMap = [{
+  key: 0,
+  value: '代理商'
+}, {
+  key: 1,
+  value: '商户'
+}]
 export default class PurchaseRecord extends BaseResource {
   static attributes() {
     return [{
@@ -21,13 +28,11 @@ export default class PurchaseRecord extends BaseResource {
     }, {
       name: 'purchase',
       type: 'Number',
-      required: true,
-      edit: true
+      edit: false
     }, {
       name: 'gameCoin',
       type: 'Number',
-      required: true,
-      edit: true
+      edit: false
     }, {
       name: 'purchaseName',
       type: 'String',
@@ -35,9 +40,10 @@ export default class PurchaseRecord extends BaseResource {
       edit: true
     }, {
       name: 'identity',
-      type: 'String',
+      type: 'Number',
       required: true,
-      edit: true
+      component: 'select',
+      options: identityMap
     }, {
       name: 'purchaseCellphone',
       type: 'Number',
@@ -47,7 +53,8 @@ export default class PurchaseRecord extends BaseResource {
       name: 'purchaseTime',
       type: 'Date',
       search: false,
-      edit: false
+      required: true,
+      edit: true
     }]
   }
   static api() {
