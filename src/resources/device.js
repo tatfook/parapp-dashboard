@@ -12,18 +12,23 @@ export default class Device extends BaseResource {
     return [{
       name: 'id',
       type: 'Number',
+      search: false,
       edit: false
     }, {
       name: 'deviceId',
       type: 'Number',
+      required: true,
       edit: true
     }, {
       name: 'price',
       type: 'Number',
+      required: true,
+      search: false,
       edit: true
     }, {
       name: 'password',
       type: 'Number',
+      required: true,
       search: false,
       edit: true
     }, {
@@ -33,15 +38,18 @@ export default class Device extends BaseResource {
     }, {
       name: 'cellphone',
       type: 'Number',
+      required: true,
+      search: false,
       edit: true
     }, {
       name: 'purchaseTime',
       type: 'Date',
       search: false,
-      edit: false
+      edit: true
     }, {
       name: 'gameCoin',
       type: 'Number',
+      search: false,
       edit: true
     }, {
       name: 'description',

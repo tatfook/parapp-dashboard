@@ -192,6 +192,12 @@ export default {
           duration: 2000
         })
       } catch (err) {
+        this.$notify({
+          title: this.$t('fail'),
+          message: this.$t('base.failed.message'),
+          type: 'error',
+          duration: 2000
+        })
         console.error(err)
       }
     },

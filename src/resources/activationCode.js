@@ -3,7 +3,7 @@ import {
 } from '@/api/resources'
 import activationCodeApi from '@/api/activationCode'
 import BaseResource from './base'
-import uuid from 'uuid/v1'
+import uuid from 'uuid/v4'
 import _ from 'lodash'
 
 const crudAPI = _.merge({}, resourceCRUD('paracraftGameCoinKeys'), activationCodeApi)
@@ -61,19 +61,19 @@ export default class ActivationCode extends BaseResource {
             data: [{
               label: '数量',
               key: 'count',
-              value: 10
+              value: ''
             }, {
               label: '激活码售价',
               key: 'price',
-              value: 100
+              value: ''
             }, {
               label: '游戏币数量',
               key: 'gameCoin',
-              value: 200
+              value: ''
             }, {
               label: '备注',
               key: 'description',
-              value: '新增一批激活码'
+              value: ''
             }],
             type: 'input',
             title: '生成激活码',
@@ -91,7 +91,7 @@ export default class ActivationCode extends BaseResource {
               price: getKeyValue(inputArr, 'price'),
               gameCoin: getKeyValue(inputArr, 'gameCoin'),
               description: getKeyValue(inputArr, 'description'),
-              key: uuid()
+              key: uuid().replace(/-/ig, '')
             })
           }
           await crudAPI.generateBulkCode('paracraftGameCoinKeys', { datas: data })

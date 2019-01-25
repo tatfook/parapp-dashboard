@@ -71,7 +71,7 @@
         "username": "购买者名称",
         "cellphone": "购买者电话",
         "purchaseTime": "购买时间",
-        "gameCoin": "游戏币数量",
+        "gameCoin": "设备卖时含有的游戏币",
         "description": "备注"
       }
     },
@@ -80,7 +80,7 @@
         "id": "序号",
         "key": "激活码",
         "price": "激活码售价",
-        "gameCoin": "游戏币数量",
+        "gameCoin": "含有游戏币数量",
         "createdAt": "创建时间",
         "description": "备注"
       }
@@ -101,7 +101,7 @@
       "attr": {
         "id": "序号",
         "key": "激活码",
-        "gameCoin": "游戏币数量",
+        "gameCoin": "激活游戏币数量",
         "deviceId": "设备ID",
         "activeTime": "激活时间"
       }
