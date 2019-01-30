@@ -346,12 +346,6 @@ export default {
       }
     },
     async handleInputCallback(input) {
-      for (const item of input) {
-        if (!item.value) {
-          this.$message.error(item.label + '不能为空')
-          return
-        }
-      }
       try {
         const callback = this.appendButtonCallback[this.dialogInputStatus]
         if (callback) {
