@@ -115,7 +115,7 @@ export default {
               cancelButtonText: this.$t('cancel'),
               type: 'warning'
             }).then(async() => {
-              await func(row)
+              await func(row, this)
               this.getList()
             }).catch(() => {
               this.$message({
@@ -124,7 +124,7 @@ export default {
               })
             })
           } else {
-            await func(row)
+            await func(row, this)
             this.getList()
           }
         }

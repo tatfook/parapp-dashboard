@@ -34,7 +34,7 @@
       <crud-show :list="showingData" />
     </el-dialog>
 
-    <el-dialog :visible.sync="dialogInputVisible" :title="dialogTitle">
+    <el-dialog v-if="dialogInputVisible" :visible.sync="dialogInputVisible" :title="dialogTitle">
       <crud-input :list="inputData" :stats="dialogInputStatus" @cancel="dialogInputVisible = false" @callback="handleInputCallback"></crud-input>
     </el-dialog>
 

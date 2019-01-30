@@ -5,6 +5,7 @@ import activationCodeApi from '@/api/activationCode'
 import BaseResource from './base'
 import uuid from 'uuid/v4'
 import _ from 'lodash'
+import store from '@/store'
 
 const crudAPI = _.merge({}, resourceCRUD('paracraftGameCoinKeys'), activationCodeApi)
 
@@ -21,6 +22,10 @@ export default class ActivationCode extends BaseResource {
       name: 'active',
       type: 'Number',
       edit: false
+    }, {
+      name: 'purchase',
+      type: 'Number',
+      edit: true
     }, {
       name: 'key',
       type: 'Number',
@@ -49,14 +54,60 @@ export default class ActivationCode extends BaseResource {
 
   static actions() {
     return {
-      disabled: ['destroy', 'delete', 'create', 'edit']
+      disabled: ['destroy', 'delete', 'create', 'edit'],
+      extra: [{
+        name: 'isPurchase',
+        button: 'primary',
+        type(row) {
+          return Number(row.purchase) === 1 ? 'info' : 'success'
+        },
+        title(row) {
+          return Number(row.purchase) === 1 ? '已购买' : '购买'
+        },
+        async func(row, that) {
+          if (Number(row.purchase) === 1) {
+            that.$message({
+              type: 'info',
+              message: '此激活码已经被购买!'
+            })
+            return
+          }
+          that.selected.push(row)
+          const params = {
+            data: [{
+              label: '购买者名称',
+              key: 'purchaseName',
+              value: ''
+            }, {
+              label: '购买者身份（0-代理商，1-商户）',
+              key: 'identity',
+              value: ''
+            }, {
+              label: '购买者电话',
+              key: 'purchaseCellphone',
+              value: ''
+            }],
+            type: 'input',
+            title: '批量购买',
+            status: 'purchaseCode'
+          }
+          that.showDialog(params)
+          // await crudAPI.update({ ...row,
+          //   purchase: 1
+          // })
+          // that.$message({
+          //   type: 'success',
+          //   message: '购买成功!'
+          // })
+        }
+      }]
     }
   }
 
   static buttons() {
     return {
       append: [{
-        name: '生成激活码',
+        name: '新增激活码',
         type: 'primary',
         refresh: false,
         checkSelected: false,
@@ -85,6 +136,32 @@ export default class ActivationCode extends BaseResource {
           }
           that.showDialog(params)
         }
+      }, {
+        name: '批量购买',
+        type: 'primary',
+        refresh: false,
+        checkSelected: false,
+        async func(selected, that) {
+          const params = {
+            data: [{
+              label: '购买者名称',
+              key: 'purchaseName',
+              value: ''
+            }, {
+              label: '购买者身份（0-代理商，1-商户）',
+              key: 'identity',
+              value: ''
+            }, {
+              label: '购买者电话',
+              key: 'purchaseCellphone',
+              value: ''
+            }],
+            type: 'input',
+            title: '批量购买',
+            status: 'purchaseCode'
+          }
+          that.showDialog(params)
+        }
       }],
       callback: {
         async generateCode(inputArr, that) {
@@ -98,7 +175,45 @@ export default class ActivationCode extends BaseResource {
               key: uuid().replace(/-/ig, '')
             })
           }
-          await crudAPI.generateBulkCode('paracraftGameCoinKeys', { datas: data })
+          await crudAPI.generateBulkCode('paracraftGameCoinKeys', {
+            datas: data
+          })
+        },
+        async purchaseCode(inputArr, that) {
+          console.log('selected', that.selected)
+          if (that.selected.length === 0) {
+            that.$message({
+              type: 'info',
+              message: '请选择购买项'
+            })
+            return
+          }
+          for (let j = 0; j < that.selected.length; j++) {
+            if (Number(that.selected[j].purchase) === 1) {
+              that.$message({
+                type: 'warning',
+                message: '含有已购买的项，请重新选择！'
+              })
+              return
+            }
+          }
+          const data = _.map(that.selected, i => {
+            return {
+              ...i,
+              purchase: 1,
+              purchaseName: getKeyValue(inputArr, 'purchaseName'),
+              identity: getKeyValue(inputArr, 'identity'),
+              purchaseCellphone: getKeyValue(inputArr, 'purchaseCellphone')
+            }
+          })
+          await Promise.all(data.map(i => crudAPI.update(i)))
+          store.dispatch('setSelectedResouces', {
+            selectedResources: []
+          })
+          that.$message({
+            type: 'success',
+            message: '购买成功!'
+          })
         }
       }
     }

@@ -2,7 +2,7 @@
   <div class="input-dialog">
     <div class="input-dialog-input-row" v-for="item in inputArr" :key="item.key">
       <div class="input-dialog-input-row-label"> {{item.label || item.key}}:</div>
-      <el-input style="width: 200px;" :label="item.label" size="medium" v-model="item.value"></el-input>
+      <el-input style="width: 200px;" :label="item.label" size="medium" v-model.trim="item.value"></el-input>
     </div>
     <div slot="footer" style="text-align: right;">
       <el-button @click="cancel">{{$t('cancel')}}</el-button>
@@ -48,7 +48,8 @@ export default {
 }
 .input-dialog-input-row-label {
   margin-right: 10px;
-  min-width: 80px;
+  min-width: 210px;
+  text-align: right;
 }
 </style>
 
