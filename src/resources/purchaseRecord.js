@@ -26,7 +26,7 @@ export default class PurchaseRecord extends BaseResource {
       required: true,
       edit: true
     }, {
-      name: 'purchase',
+      name: 'price',
       type: 'Number',
       edit: false
     }, {
