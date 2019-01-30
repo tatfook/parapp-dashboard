@@ -115,7 +115,7 @@ export default {
               cancelButtonText: this.$t('cancel'),
               type: 'warning'
             }).then(async() => {
-              await func(row)
+              await func(row, this)
               this.getList()
             }).catch(() => {
               this.$message({
@@ -124,7 +124,7 @@ export default {
               })
             })
           } else {
-            await func(row)
+            await func(row, this)
             this.getList()
           }
         }
@@ -346,12 +346,6 @@ export default {
       }
     },
     async handleInputCallback(input) {
-      for (const item of input) {
-        if (!item.value) {
-          this.$message.error(item.label + '不能为空')
-          return
-        }
-      }
       try {
         const callback = this.appendButtonCallback[this.dialogInputStatus]
         if (callback) {

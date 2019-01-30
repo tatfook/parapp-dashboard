@@ -9,5 +9,12 @@ export default {
       url: `/admins/${resourceName}/bulk`,
       data
     })
+  },
+  purchaseBulkCode(resourceName, data) {
+    return request({
+      method: 'put',
+      url: `/admins/${resourceName}/bulk`,
+      data
+    })
   }
 }

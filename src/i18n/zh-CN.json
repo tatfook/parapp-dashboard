@@ -79,6 +79,9 @@
       "attr": {
         "id": "序号",
         "active": "是否激活",
+        "purchase": "是否购买",
+        "purchaseName": "购买者名称",
+        "identity": "购买者身份",
         "key": "激活码",
         "price": "激活码售价",
         "gameCoin": "含有游戏币数量",
@@ -90,7 +93,7 @@
       "attr": {
         "id": "序号",
         "key": "激活码",
-        "purchase": "激活码售价",
+        "price": "激活码售价",
         "gameCoin": "含有游戏币数量",
         "purchaseName": "购买者名称",
         "identity": "购买者身份",

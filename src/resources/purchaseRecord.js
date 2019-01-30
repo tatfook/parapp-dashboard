@@ -26,7 +26,7 @@ export default class PurchaseRecord extends BaseResource {
       required: true,
       edit: true
     }, {
-      name: 'purchase',
+      name: 'price',
       type: 'Number',
       edit: false
     }, {
@@ -64,7 +64,7 @@ export default class PurchaseRecord extends BaseResource {
 
   static actions() {
     return {
-      disabled: ['destroy', 'delete']
+      disabled: ['destroy', 'delete', 'create', 'edit']
     }
   }
 
