@@ -64,7 +64,7 @@ export default class PurchaseRecord extends BaseResource {
 
   static actions() {
     return {
-      disabled: ['destroy', 'delete', 'create']
+      disabled: ['destroy', 'delete', 'create', 'edit']
     }
   }
 
