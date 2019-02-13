@@ -230,7 +230,8 @@ export default class ActivationCode extends BaseResource {
               purchase: 1,
               purchaseName: getKeyValue(inputObj, 'purchaseName'),
               identity: getKeyValue(inputObj, 'identity'),
-              purchaseCellphone: getKeyValue(inputObj, 'purchaseCellphone')
+              purchaseCellphone: getKeyValue(inputObj, 'purchaseCellphone'),
+              purchaseTime: new Date()
             }
           })
           await Promise.all(data.map(i => crudAPI.update(i)))
