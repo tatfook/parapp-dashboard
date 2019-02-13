@@ -72,6 +72,7 @@ export default class PurchaseRecord extends BaseResource {
     // will include all by default, to make sure every associate works
     query.include({ all: true, nested: false })
     query.where({ 'purchase-eq': 1 })
+    query.order('purchaseTime-DESC')
     return query
   }
 }
