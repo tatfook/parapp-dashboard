@@ -43,7 +43,10 @@ export default class PurchaseRecord extends BaseResource {
       type: 'Number',
       required: true,
       component: 'select',
-      options: identityMap
+      options: identityMap,
+      filter(value) {
+        return value === 0 ? '代理商' : '商户'
+      }
     }, {
       name: 'purchaseCellphone',
       type: 'Number',
