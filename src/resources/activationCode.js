@@ -36,8 +36,8 @@ const inputData = [{
   value: '',
   required: true,
   rules: [{
-    min: 5,
-    max: 11,
+    min: 3,
+    max: 20,
     message: '号码格式有误',
     trigger: 'blur'
   }]
