@@ -381,9 +381,15 @@ export default {
       if (!this.showingFormVisible) return []
       const data = []
       _.forEach(this.attributes, item => {
-        data.push({
-          key: item.name,
-          value: this.activeRow[item.name]
+        let temp = ''
+        _.forEach(this.resourceClass.searchAttrs(), i => {
+          if (i.name === item.name) {
+            temp = i.filter ? i.filter(this.activeRow[item.name]) : this.activeRow[item.name]
+            data.push({
+              key: item.name,
+              value: temp
+            })
+          }
         })
       })
       return data
